@@ -1,45 +1,24 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import Card from "../../Coponents/Card/Card";
-import "./Main.css";
+import React, { useState } from "react";
+import Main1 from "../Main1/Main1";
+import Main2 from "../Main2/Main2";
 
 const Main = () => {
-  const [users, setUsers] = useState([]);
-  const [filterUsers, setFilterUsers] = useState([]);
-  const [num, setNum] = useState("");
-  useEffect(() => {
-    async function getData() {
-      const res = await fetch("https://api.github.com/users");
-      const data = await res.json();
-      setUsers(data);
-      setFilterUsers(data);
-      setNum("30");
-    }
-    getData();
-  }, []);
-  useEffect(() => {
-    const number = parseInt(num);
-    if (number < 0 || number > users.length) return;
-    const data = users.slice(0, number);
-    setFilterUsers(data);
-  }, [num]);
+  const [isMain1, setIsMain1] = useState(true);
   return (
-    <div className="main_container">
-      <input type="text" value={num} onChange={(e) => setNum(e.target.value)} />
-
-      <div className="main_container_main">
-        {filterUsers.map((user) => {
-          return (
-            <Card
-              key={user.id}
-              login={user.login}
-              avatar_url={user.avatar_url}
-            />
-          );
-        })}
-      </div>
+    <div>
+      <button onClick={() => setIsMain1(!isMain1)}>Click</button>
+      {isMain1 && <Main1 />}
+      {!isMain1 && <Main2 />}
     </div>
   );
 };
 
 export default Main;
+/**
+ 1) isMain1 = true
+ {isMain1 && <Main1 />} = { T } !T = F, !F = T
+  {!isMain1 && <Main2 />}
+ 2) isMain1 = false;
+ {isMain1 && <Main1 />} = { F } !T = F, !F = T
+  {!isMain1 && <Main2 />} = {T }
+ */
