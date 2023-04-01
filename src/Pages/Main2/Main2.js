@@ -57,7 +57,7 @@ const Main = () => {
       <div className="main_container_main">
         {filterUsersByName.map((user) => {
           return (
-            <Card
+            <Card  
               key={user.id}
               login={user.login}
               avatar_url={user.avatar_url}
@@ -70,3 +70,12 @@ const Main = () => {
 };
 
 export default Main;
+
+
+/**
+ users = [user1,user2,user3,user4,user5,....,usern]
+ filterUsers = [user1,user2,user3,user4,user5] filterUsersByName = [user1,user2,user3,user4,user5]
+
+ 
+ 
+ */

@@ -7,6 +7,8 @@ const Main = () => {
   return (
     <div>
       <button onClick={() => setIsMain1(!isMain1)}>Click</button>
+
+      {/* {isMain1 ? <Main1 /> : <Main2 />} */}
       {isMain1 && <Main1 />}
       {!isMain1 && <Main2 />}
     </div>
@@ -14,11 +16,3 @@ const Main = () => {
 };
 
 export default Main;
-/**
- 1) isMain1 = true
- {isMain1 && <Main1 />} = { T } !T = F, !F = T
-  {!isMain1 && <Main2 />}
- 2) isMain1 = false;
- {isMain1 && <Main1 />} = { F } !T = F, !F = T
-  {!isMain1 && <Main2 />} = {T }
- */
